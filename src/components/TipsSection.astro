@@ -1,0 +1,85 @@
+---
+const tips = [
+  {
+    icon: 'camera',
+    title: 'Fotografías Profesionales',
+    description: 'Utiliza fotos de alta calidad y bien iluminadas. Una imagen profesional aumenta significativamente el interés.'
+  },
+  {
+    icon: 'text',
+    title: 'Descripción Detallada',
+    description: 'Sé clara y precisa en tu descripción. Incluye detalles relevantes que destaquen tu personalidad.'
+  },
+  {
+    icon: 'clock',
+    title: 'Mantén Actualizado',
+    description: 'Actualiza tu perfil regularmente. La información actualizada genera más confianza.'
+  },
+  {
+    icon: 'shield',
+    title: 'Privacidad Primero',
+    description: 'Cuida tu información personal. Tu seguridad es nuestra prioridad.'
+  }
+];
+---
+
+<section class="relative py-16">
+  <!-- Efectos de fondo -->
+  <div class="absolute inset-0 overflow-hidden">
+    <div class="absolute top-0 left-1/4 w-64 h-64 bg-accent/10 rounded-full filter blur-3xl"></div>
+    <div class="absolute bottom-0 right-1/4 w-64 h-64 bg-purple-500/10 rounded-full filter blur-3xl"></div>
+  </div>
+
+  <div class="relative max-w-7xl mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-display text-surface-light mb-4">
+        Tips para Destacar
+      </h2>
+      <p class="text-surface-light/70 max-w-2xl mx-auto">
+        Maximiza tu presencia con estos consejos profesionales
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {tips.map(tip => (
+        <div class="glass-panel p-6 rounded-xl hover:scale-105 transition-all duration-300">
+          <div class="flex flex-col items-center text-center">
+            <div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center mb-4">
+              {tip.icon === 'camera' && (
+                <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              )}
+              {tip.icon === 'text' && (
+                <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h7" />
+                </svg>
+              )}
+              {tip.icon === 'clock' && (
+                <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              )}
+              {tip.icon === 'shield' && (
+                <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+              )}
+            </div>
+            <h3 class="text-xl font-display text-surface-light mb-2">{tip.title}</h3>
+            <p class="text-surface-light/70 text-sm">{tip.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+.glass-panel {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+</style>

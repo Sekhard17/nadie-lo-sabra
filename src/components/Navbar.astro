@@ -1,0 +1,95 @@
+---
+const pathname = new URL(Astro.request.url).pathname;
+const currentPath = pathname.slice(1); // remove the first "/"
+import Logo from './Logo.astro';
+---
+
+<nav class="fixed top-0 left-0 right-0 z-50 bg-primary/80 backdrop-blur-xl border-b border-white/10">
+  <div class="flex items-center justify-between max-w-7xl mx-auto px-4 py-4">
+    <!-- Logo -->
+    <a href="/" class="group flex items-center space-x-4">
+      <Logo class="group-hover:scale-110 transition-transform duration-300" />
+      <div class="flex flex-col">
+        <span class="text-2xl font-display text-surface-light group-hover:text-accent transition-colors uppercase tracking-wider">
+          Nadie Lo Sabrá
+        </span>
+        <span class="text-xs tracking-[0.3em] text-surface-light/60 group-hover:text-accent/60 transition-colors uppercase">
+          Discreto & Elegante
+        </span>
+      </div>
+    </a>
+    
+    <!-- Navigation Links - Desktop -->
+    <div class="hidden md:flex items-center space-x-8">
+      {[
+        { href: '/explorar', label: 'EXPLORAR' },
+        { href: '/premium', label: 'PREMIUM' },
+        { href: '/blog', label: 'BLOG' },
+      ].map(item => (
+        <a 
+          href={item.href}
+          class:list={[
+            'relative py-2 text-sm tracking-widest',
+            'text-surface-light hover:text-accent transition-colors duration-300',
+            'before:absolute before:bottom-0 before:left-0 before:w-full before:h-0.5',
+            'before:bg-accent before:transform before:scale-x-0 hover:before:scale-x-100',
+            'before:transition-transform before:duration-300',
+            currentPath === item.href.slice(1) ? 'text-accent before:scale-x-100' : ''
+          ]}
+        >
+          {item.label}
+        </a>
+      ))}
+      
+      <!-- Botón Anúnciate con efecto especial -->
+      <a href="/anunciate" class="relative group">
+        <div class="absolute -inset-0.5 bg-gradient-to-r from-accent to-interactive rounded-full blur opacity-60 group-hover:opacity-100 transition duration-300"></div>
+        <div class="relative px-6 py-2 bg-primary rounded-full text-surface-light uppercase tracking-wider text-sm hover:bg-primary-light transition-colors">
+          Anúnciate
+        </div>
+      </a>
+    </div>
+
+    <!-- Menú móvil -->
+    <button class="md:hidden relative w-10 h-10 flex items-center justify-center group hover:bg-accent/20 transition-colors">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-surface-light group-hover:text-accent transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Menú móvil desplegable (oculto por defecto) -->
+  <div class="hidden md:hidden bg-primary/95 backdrop-blur-xl border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 py-4">
+      {[
+        { href: '/explorar', label: 'EXPLORAR' },
+        { href: '/premium', label: 'PREMIUM' },
+        { href: '/blog', label: 'BLOG' },
+      ].map(item => (
+        <a
+          href={item.href}
+          class:list={[
+            'block py-2 text-surface-light hover:text-accent transition-colors',
+            'text-sm tracking-widest uppercase',
+            currentPath === item.href.slice(1) ? 'text-accent bg-accent/10 rounded-lg' : ''
+          ]}
+        >
+          {item.label}
+        </a>
+      ))}
+      <a href="/anunciate" class="block w-full mt-4 px-6 py-2 bg-accent rounded-lg text-surface-light uppercase tracking-wider text-sm hover:bg-accent/90 transition-colors text-center">
+        Anúnciate
+      </a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  // Toggle menú móvil
+  const menuButton = document.querySelector('button.md\\:hidden');
+  const mobileMenu = document.querySelector('div.hidden.md\\:hidden');
+  
+  menuButton?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+  });
+</script>

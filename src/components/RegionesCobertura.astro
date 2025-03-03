@@ -1,0 +1,145 @@
+---
+const regiones = [
+  {
+    zona: "Norte",
+    regiones: [
+      {
+        nombre: "Arica y Parinacota",
+        comunas: ["Arica", "Camarones", "Putre", "General Lagos"]
+      },
+      {
+        nombre: "Tarapacá",
+        comunas: ["Iquique", "Alto Hospicio", "Pozo Almonte", "Pica"]
+      },
+      {
+        nombre: "Antofagasta",
+        comunas: ["Antofagasta", "Calama", "Tocopilla", "Mejillones"]
+      },
+      {
+        nombre: "Atacama",
+        comunas: ["Copiapó", "Caldera", "Vallenar", "Huasco"]
+      },
+      {
+        nombre: "Coquimbo",
+        comunas: ["La Serena", "Coquimbo", "Ovalle", "Illapel"]
+      }
+    ]
+  },
+  {
+    zona: "Centro",
+    regiones: [
+      {
+        nombre: "Valparaíso",
+        comunas: ["Valparaíso", "Viña del Mar", "Quilpué", "Villa Alemana", "San Antonio"]
+      },
+      {
+        nombre: "Metropolitana",
+        comunas: ["Santiago", "Las Condes", "Providencia", "Vitacura", "Ñuñoa", "La Florida"]
+      },
+      {
+        nombre: "O'Higgins",
+        comunas: ["Rancagua", "San Fernando", "Santa Cruz", "Machalí"]
+      },
+      {
+        nombre: "Maule",
+        comunas: ["Talca", "Curicó", "Linares", "Constitución"]
+      }
+    ]
+  },
+  {
+    zona: "Sur",
+    regiones: [
+      {
+        nombre: "Ñuble",
+        comunas: ["Chillán", "Bulnes", "San Carlos", "Yungay"]
+      },
+      {
+        nombre: "Biobío",
+        comunas: ["Concepción", "Talcahuano", "Los Ángeles", "Coronel"]
+      },
+      {
+        nombre: "Araucanía",
+        comunas: ["Temuco", "Padre Las Casas", "Villarrica", "Pucón"]
+      },
+      {
+        nombre: "Los Ríos",
+        comunas: ["Valdivia", "La Unión", "Panguipulli", "Río Bueno"]
+      },
+      {
+        nombre: "Los Lagos",
+        comunas: ["Puerto Montt", "Osorno", "Castro", "Puerto Varas"]
+      },
+      {
+        nombre: "Aysén",
+        comunas: ["Coyhaique", "Puerto Aysén", "Chile Chico", "Cochrane"]
+      },
+      {
+        nombre: "Magallanes",
+        comunas: ["Punta Arenas", "Puerto Natales", "Porvenir", "Torres del Paine"]
+      }
+    ]
+  }
+];
+---
+
+<div class="max-w-7xl mx-auto px-4">
+  <div class="text-center mb-16">
+    <h2 class="text-4xl font-display text-surface-light mb-4">Cobertura Nacional</h2>
+    <p class="text-surface-light/80">Presencia en todas las regiones de Chile</p>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    {regiones.map((zona) => (
+      <div class="glass-panel p-6 rounded-2xl relative group hover:scale-[1.02] transition-all duration-300">
+        <div class="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl"></div>
+        
+        <h3 class="text-2xl font-display text-surface-light mb-6 flex items-center">
+          <span class="w-2 h-2 bg-accent rounded-full mr-3"></span>
+          Zona {zona.zona}
+        </h3>
+        
+        <div class="space-y-6">
+          {zona.regiones.map((region) => (
+            <div class="relative">
+              <details class="group/region">
+                <summary class="list-none cursor-pointer">
+                  <div class="flex items-center text-surface-light/90 hover:text-accent transition-colors">
+                    <svg 
+                      class="w-4 h-4 mr-2 transition-transform group-open/region:rotate-90" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path 
+                        stroke-linecap="round" 
+                        stroke-linejoin="round" 
+                        stroke-width="2" 
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                    {region.nombre}
+                  </div>
+                </summary>
+                <div class="mt-2 ml-6 space-y-1">
+                  {region.comunas.map((comuna) => (
+                    <div class="text-sm text-surface-light/70 hover:text-accent transition-colors pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[0.6em] before:w-2 before:h-[1px] before:bg-accent/50">
+                      {comuna}
+                    </div>
+                  ))}
+                </div>
+              </details>
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+</style>

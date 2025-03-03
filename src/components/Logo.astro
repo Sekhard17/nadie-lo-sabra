@@ -1,0 +1,69 @@
+---
+interface Props {
+  class?: string;
+  size?: number;
+}
+
+const { class: className = '', size = 40 } = Astro.props;
+---
+
+<div class={`logo-container ${className}`}>
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 100 100"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    class="transition-all duration-300 hover:scale-105"
+  >
+    <!-- Silueta femenina 1 -->
+    <path
+      d="M20 20 C20 10, 30 0, 40 10 S60 0, 70 20 V80 C60 90, 50 100, 40 90 S20 90, 10 80 V20 Z"
+      class="fill-black transition-all duration-300 hover:fill-red-700"
+    />
+
+    <!-- Silueta femenina 2 -->
+    <path
+      d="M50 20 C50 10, 60 0, 70 10 S90 0, 100 20 V80 C90 90, 80 100, 70 90 S50 90, 40 80 V20 Z"
+      class="fill-black transition-all duration-300 hover:fill-red-700"
+    />
+
+    <!-- Brillo en las siluetas -->
+    <circle cx="35" cy="25" r="5" class="fill-white/30"/>
+    <circle cx="65" cy="25" r="5" class="fill-white/30"/>
+
+    <!-- Destellos -->
+    <circle cx="35" cy="25" r="2" class="fill-yellow-400 animate-ping-slow"/>
+    <circle cx="65" cy="25" r="2" class="fill-yellow-400 animate-ping-slow" style="animation-delay: 1s"/>
+  </svg>
+</div>
+
+<style>
+  .logo-container {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @keyframes ping-slow {
+    0% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(2); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+
+  .animate-ping-slow {
+    animation: ping-slow 3s infinite;
+  }
+
+  .logo-container svg {
+    filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.5));
+  }
+
+  .logo-container:hover svg {
+    filter: drop-shadow(0 0 12px rgba(234, 179, 8, 1)); /* Usando un valor RGBA para el dorado */
+  }
+
+  .logo-container:hover path {
+    transform: scale(1.05);
+  }
+</style>
