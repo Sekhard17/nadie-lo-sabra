@@ -1,74 +1,106 @@
 ---
-import { Search, MapPin, Crown, Star, Clock, Heart, Sparkles } from 'lucide-astro'
+import { Search, MapPin, Tag, ChevronDown, Sparkles } from 'lucide-astro';
+
+// Categorías populares
+const popularCategories = [
+  'Premium', 'Masajes', 'Escorts VIP', 'Independientes', 'Dominación'
+];
+
+// Ubicaciones populares
+const popularLocations = [
+  'Santiago Centro', 'Providencia', 'Las Condes', 'Viña del Mar', 'Concepción'
+];
 ---
 
-<div class="search-container glass-panel p-1 animate-slide-up">
-  <div class="flex flex-col gap-2">
-    <!-- Campo de búsqueda principal -->
-    <div class="relative flex-grow">
+<div class="search-box-container w-full">
+  <div class="glass-card p-4 md:p-6 rounded-2xl border border-white/10 backdrop-blur-xl">
+    <!-- Barra de búsqueda principal -->
+    <div class="relative mb-4">
+      <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+        <Search size={20} class="text-accent" />
+      </div>
       <input 
         type="text" 
         placeholder="Busca por servicio, ubicación o preferencias..." 
-        class="w-full pl-12 pr-4 py-3 bg-black/20 rounded-xl text-surface-light placeholder:text-surface-light/50 focus:ring-2 focus:ring-accent/50 focus:outline-none"
+        class="w-full pl-12 pr-4 py-4 bg-black/30 rounded-xl text-surface-light placeholder:text-surface-light/50 focus:ring-2 focus:ring-accent/50 focus:outline-none border border-white/5 transition-all hover:border-white/10"
       />
-      <span class="absolute left-4 top-1/2 -translate-y-1/2 text-accent">
-        <Search size={20} />
-      </span>
-    </div>
-
-    <!-- Filtros -->
-    <div class="flex flex-col sm:flex-row gap-2">
-      <div class="flex flex-1 gap-2">
-        <select class="w-full sm:w-auto px-4 py-3 bg-black/20 rounded-xl text-surface-light focus:ring-2 focus:ring-accent/50 focus:outline-none">
-          <option value="">Categoría</option>
-          <option value="premium">Premium</option>
-          <option value="vip">VIP</option>
-          <option value="standard">Standard</option>
-        </select>
-
-        <select class="w-full sm:w-auto px-4 py-3 bg-black/20 rounded-xl text-surface-light focus:ring-2 focus:ring-accent/50 focus:outline-none">
-          <option value="">Ubicación</option>
-          <option value="santiago">Santiago Centro</option>
-          <option value="providencia">Providencia</option>
-          <option value="lascondes">Las Condes</option>
-          <option value="vitacura">Vitacura</option>
-        </select>
-      </div>
-
-      <button class="btn-accent w-full sm:w-auto px-8 py-3 flex items-center justify-center gap-2">
-        <span>Buscar</span>
+      <button class="absolute inset-y-0 right-0 px-4 py-2 mr-2 my-2 bg-accent hover:bg-accent/90 text-white rounded-lg transition-all flex items-center">
+        <span class="hidden md:inline-block mr-2">Buscar</span>
         <Search size={18} />
       </button>
     </div>
-  </div>
-
-  <!-- Tags populares -->
-  <div class="flex flex-wrap gap-2 mt-4 px-2">
-    {[
-      { icon: Crown, label: 'Premium' },
-      { icon: Sparkles, label: 'VIP' },
-      { icon: Star, label: 'Mejor valoradas' },
-      { icon: MapPin, label: 'Cerca de ti' },
-      { icon: Clock, label: 'Disponible ahora' },
-      { icon: Heart, label: 'Favoritos' },
-    ].map(({ icon: Icon, label }) => (
-      <button class="group px-4 py-2 bg-black/10 hover:bg-accent/20 rounded-full transition-all flex items-center gap-2">
-        <Icon size={16} class="text-surface-light/70 group-hover:text-surface-light transition-colors" />
-        <span class="text-sm text-surface-light/70 group-hover:text-surface-light transition-colors">
-          {label}
-        </span>
-      </button>
-    ))}
+    
+    <!-- Filtros -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <!-- Categoría -->
+      <div class="relative">
+        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+          <Tag size={18} class="text-accent/80" />
+        </div>
+        <select class="w-full pl-12 pr-10 py-3 bg-black/20 rounded-xl text-surface-light/90 focus:ring-2 focus:ring-accent/50 focus:outline-none border border-white/5 appearance-none transition-all hover:border-white/10">
+          <option value="">Todas las categorías</option>
+          <option value="premium">Premium</option>
+          <option value="masajes">Masajes</option>
+          <option value="escorts">Escorts VIP</option>
+          <option value="independientes">Independientes</option>
+          <option value="dominacion">Dominación</option>
+        </select>
+        <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+          <ChevronDown size={18} class="text-surface-light/50" />
+        </div>
+      </div>
+      
+      <!-- Ubicación -->
+      <div class="relative">
+        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+          <MapPin size={18} class="text-accent/80" />
+        </div>
+        <select class="w-full pl-12 pr-10 py-3 bg-black/20 rounded-xl text-surface-light/90 focus:ring-2 focus:ring-accent/50 focus:outline-none border border-white/5 appearance-none transition-all hover:border-white/10">
+          <option value="">Todas las ubicaciones</option>
+          <option value="santiago-centro">Santiago Centro</option>
+          <option value="providencia">Providencia</option>
+          <option value="las-condes">Las Condes</option>
+          <option value="vina-del-mar">Viña del Mar</option>
+          <option value="concepcion">Concepción</option>
+        </select>
+        <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+          <ChevronDown size={18} class="text-surface-light/50" />
+        </div>
+      </div>
+    </div>
+    
+    <!-- Tags populares -->
+    <div class="mt-5">
+      <div class="flex items-center mb-3">
+        <Sparkles size={14} class="text-accent mr-2" />
+        <span class="text-xs text-surface-light/70 font-medium uppercase tracking-wider">Búsquedas populares</span>
+      </div>
+      
+      <div class="flex flex-wrap gap-2">
+        {popularCategories.map(category => (
+          <button class="px-3 py-1.5 bg-white/5 hover:bg-white/10 rounded-full text-sm text-surface-light/80 hover:text-surface-light transition-all border border-white/5 hover:border-white/10">
+            {category}
+          </button>
+        ))}
+      </div>
+    </div>
   </div>
 </div>
 
 <style>
+  .glass-card {
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Estilizar los selects para que se vean mejor en diferentes navegadores */
   select {
-    appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-    background-repeat: no-repeat;
-    background-position: right 1rem center;
-    background-size: 1em;
-    padding-right: 2.5rem;
+    background-image: none;
+  }
+  
+  /* Animación sutil al enfocar los inputs */
+  input:focus, select:focus {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
 </style>

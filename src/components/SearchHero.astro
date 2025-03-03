@@ -1,103 +1,276 @@
 ---
+import { Sparkles, ArrowRight, Heart, MapPin, Calendar, Star } from 'lucide-astro';
 import SearchBox from './SearchBox.astro';
-import { Users, Heart, Clock, Shield, MapPin } from 'lucide-astro';
-
-// Importar imágenes
-const images = [
-  'https://images.unsplash.com/photo-1534528741775-53994a69daeb?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=300&ixid=MnwxfDB8MXxyYW5kb218MHx8cG9ydHJhaXQsd29tYW4sc21pbGV8fHx8fHwxNjQ1MjM5NjIw&ixlib=rb-1.2.1&q=80&w=200',
-  'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=300&ixid=MnwxfDB8MXxyYW5kb218MHx8cG9ydHJhaXQsd29tYW4sc21pbGV8fHx8fHwxNjQ1MjM5NjIw&ixlib=rb-1.2.1&q=80&w=200',
-  'https://images.unsplash.com/photo-1544005313-94ddf0286df2?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=300&ixid=MnwxfDB8MXxyYW5kb218MHx8cG9ydHJhaXQsd29tYW4sc21pbGV8fHx8fHwxNjQ1MjM5NjIw&ixlib=rb-1.2.1&q=80&w=200',
-  'https://images.unsplash.com/photo-1554151228-14d9def656e4?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=300&ixid=MnwxfDB8MXxyYW5kb218MHx8cG9ydHJhaXQsd29tYW4sc21pbGV8fHx8fHwxNjQ1MjM5NjIw&ixlib=rb-1.2.1&q=80&w=200'
-];
 ---
 
-<div class="relative w-full max-w-6xl mx-auto px-4 mt-20 md:mt-32 text-center">
-  <!-- Efectos de fondo -->
-  <div class="absolute inset-0 -z-10">
-    <div class="absolute top-0 left-1/4 w-40 md:w-64 h-40 md:h-64 bg-accent/30 rounded-full filter blur-3xl animate-float"></div>
-    <div class="absolute bottom-0 right-1/4 w-40 md:w-64 h-40 md:h-64 bg-interactive/30 rounded-full filter blur-3xl animate-float-delayed"></div>
+<section class="relative pt-12 pb-16 md:pt-16 md:pb-20 lg:pt-20 lg:pb-24 px-0 overflow-hidden">
+  <!-- Fondo con efectos visuales mejorados -->
+  <div class="absolute inset-0 -z-10 overflow-hidden">
+    <!-- Patrones y texturas -->
+    <div class="absolute inset-0 bg-[url('/images/pattern-dots.svg')] opacity-10"></div>
   </div>
 
-  <!-- Contenido principal -->
-  <div class="space-y-6 md:space-y-8">
-    <!-- Título y subtítulo -->
-    <div class="space-y-3 md:space-y-4">
-      <h1 class="text-3xl sm:text-4xl md:text-6xl font-display text-surface-light mb-4 md:mb-6 animate-fade-in">
-        Encuentra tu 
-        <span class="relative inline-block">
-          <span class="relative z-10 text-accent">momento especial</span>
-          <svg class="absolute -bottom-2 left-0 w-full" viewBox="0 0 100 20" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 10 Q25 0, 50 10 T100 10" fill="none" stroke="currentColor" stroke-width="2" class="text-accent/30"/>
-          </svg>
-        </span>
+  <div class="max-w-6xl mx-auto relative">
+    <!-- Contenido principal con animaciones -->
+    <div class="text-center mb-10 md:mb-14">
+      <div class="inline-flex items-center px-4 py-2 rounded-full bg-accent/10 text-accent text-sm mb-6 animate-fade-in">
+        <Sparkles size={16} class="mr-2 animate-pulse-slow" />
+        <span>La experiencia que mereces</span>
+      </div>
+      
+      <!-- Título con animación mejorada -->
+      <h1 class="text-5xl sm:text-6xl md:text-7xl font-display text-surface-light mb-6 md:mb-8 leading-tight tracking-tight">
+        <span class="animate-title-word-1 inline-block">Descubre</span> 
+        <span class="text-gradient bg-gradient-to-r from-accent via-purple-500 to-pink-500 relative inline-block animate-title-word-2">
+          experiencias
+        </span> 
+        <br class="hidden sm:block" />
+        <span class="animate-title-word-3 inline-block">únicas</span>
       </h1>
       
-      <p class="text-base sm:text-lg md:text-xl text-surface-light/80 mb-8 md:mb-12 animate-fade-in max-w-2xl mx-auto">
-        Descubre experiencias únicas y exclusivas, cuidadosamente seleccionadas para ti
+      <p class="text-xl md:text-2xl text-surface-light/80 max-w-3xl mx-auto mb-10 md:mb-12 leading-relaxed animate-fade-in-delayed">
+        La plataforma más discreta y exclusiva para encontrar compañía de calidad
       </p>
     </div>
-
-    <!-- Buscador -->
-    <SearchBox />
-
-    <!-- Estadísticas -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mt-12 md:mt-16">
-      {[
-        { icon: Users, number: '2,500+', label: 'Usuarios Activos' },
-        { icon: Heart, number: '98%', label: 'Satisfacción' },
-        { icon: Clock, number: '24/7', label: 'Soporte' },
-        { icon: Shield, number: '100%', label: 'Discreto' },
-      ].map(({ icon: Icon, number, label }) => (
-        <div class="glass-panel p-3 md:p-4 text-center">
-          <Icon size={20} class="text-accent mx-auto mb-1 md:mb-2" />
-          <div class="text-xl md:text-2xl font-display text-accent mb-0 md:mb-1">{number}</div>
-          <div class="text-xs md:text-sm text-surface-light/70">{label}</div>
-        </div>
-      ))}
-    </div>
-
-    <!-- Galería de imágenes destacadas -->
-    <div class="relative mt-12 md:mt-20">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 max-w-6xl mx-auto">
-        {images.map((src, i) => (
-          <div class="relative aspect-[2/3] glass-panel overflow-hidden group cursor-pointer">
-            <div class="absolute inset-0 bg-gradient-to-t from-primary via-transparent to-transparent opacity-60 z-10"></div>
-            <img 
-              src={src}
-              alt="Preview" 
-              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-            />
-            <div class="absolute bottom-0 left-0 right-0 p-3 md:p-4 text-left z-20">
-              <div class="text-xs md:text-sm font-semibold text-surface-light">Premium</div>
-              <div class="text-[10px] md:text-xs text-surface-light/70 flex items-center gap-1">
-                <MapPin size={10} class="md:size-12" />
-                <span>Santiago Centro</span>
-              </div>
-            </div>
-          </div>
+    
+    <!-- Buscador con efecto de elevación -->
+    <div class="relative z-10 max-w-4xl mx-auto transform hover:-translate-y-1 transition-all duration-300">
+      <div class="absolute -inset-1.5 bg-gradient-to-r from-accent/20 to-purple-600/20 rounded-2xl blur-lg opacity-70"></div>
+      <div class="relative">
+        <SearchBox />
+      </div>
+      
+      <!-- Etiquetas populares -->
+      <div class="flex flex-wrap justify-center gap-2 mt-6">
+        <span class="text-sm text-surface-light/60 mr-2">Popular:</span>
+        {["VIP", "Masajes", "Escorts", "Citas"].map((tag) => (
+          <a href={`/buscar?tag=${tag}`} class="px-3 py-1 text-xs rounded-full border border-white/10 text-surface-light/80 hover:border-accent/30 hover:text-accent hover:bg-accent/5 transition-all">
+            {tag}
+          </a>
         ))}
       </div>
     </div>
+    
+    <!-- CTA adicional -->
+    <div class="mt-10 text-center animate-fade-in-delayed-more">
+      <a href="/explorar" class="inline-flex items-center gap-2 text-accent hover:text-accent/80 transition-colors group">
+        <span>Explorar todas las categorías</span>
+        <ArrowRight size={16} class="group-hover:translate-x-1 transition-transform" />
+      </a>
+    </div>
   </div>
-</div>
+  
+  <!-- Sección de escorts elegante -->
+  <div class="mt-16 md:mt-20 max-w-7xl mx-auto px-4">
+    <h2 class="text-2xl md:text-3xl font-display text-surface-light text-center mb-8">
+      <span class="text-gradient bg-gradient-to-r from-accent via-purple-500 to-pink-500">Escorts Destacadas</span>
+    </h2>
+    
+    <!-- Galería de escorts elegante -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-6">
+      {[
+        { 
+          name: 'Valentina', 
+          age: 24,
+          location: 'Las Condes',
+          rating: 4.9,
+          reviews: 127,
+          tags: ['VIP', 'Masajes'],
+          image: '/images/model-1.jpg'
+        },
+        { 
+          name: 'Isabella', 
+          age: 23,
+          location: 'Providencia',
+          rating: 4.8,
+          reviews: 98,
+          tags: ['Premium', 'Citas'],
+          image: '/images/model-2.jpg'
+        },
+        { 
+          name: 'Camila', 
+          age: 25,
+          location: 'Vitacura',
+          rating: 5.0,
+          reviews: 156,
+          tags: ['VIP', 'Exclusiva'],
+          image: '/images/model-3.jpg'
+        },
+        { 
+          name: 'Sofía', 
+          age: 22,
+          location: 'Lo Barnechea',
+          rating: 4.7,
+          reviews: 84,
+          tags: ['Premium', 'Masajes'],
+          image: '/images/model-4.jpg'
+        },
+      ].map(escort => (
+        <div class="escort-card group">
+          <div class="relative aspect-[3/4] overflow-hidden rounded-xl">
+            <!-- Imagen con efecto de zoom al hover -->
+            <div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500" style={`background-image: url('${escort.image}')`}></div>
+            
+            <!-- Gradiente superior para las etiquetas -->
+            <div class="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-black/70 to-transparent z-10"></div>
+            
+            <!-- Etiquetas superiores -->
+            <div class="absolute top-3 left-3 right-3 flex justify-between items-start z-20">
+              <div class="flex gap-1">
+                {escort.tags.map(tag => (
+                  <span class="px-2 py-1 text-xs rounded-full bg-accent/80 backdrop-blur-sm text-white font-medium">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <div class="w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center">
+                <Heart size={14} class="text-white group-hover:text-pink-500 transition-colors" />
+              </div>
+            </div>
+            
+            <!-- Gradiente inferior para la información -->
+            <div class="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-black/90 to-transparent z-10"></div>
+            
+            <!-- Información de la escort -->
+            <div class="absolute bottom-3 left-3 right-3 z-20">
+              <div class="flex items-center gap-1 mb-1">
+                <div class="flex">
+                  {[...Array(5)].map((_, i) => (
+                    <Star size={12} class={`${i < Math.floor(escort.rating) ? 'text-yellow-400' : 'text-gray-400'} ${i === Math.floor(escort.rating) && escort.rating % 1 > 0 ? 'text-yellow-400 opacity-50' : ''}`} />
+                  ))}
+                </div>
+                <span class="text-white text-xs font-medium">{escort.rating}</span>
+                <span class="text-white/60 text-xs">({escort.reviews})</span>
+              </div>
+              
+              <h3 class="text-white text-lg font-medium">{escort.name}, {escort.age}</h3>
+              
+              <div class="flex items-center gap-3 mt-1">
+                <div class="flex items-center gap-1">
+                  <MapPin size={12} class="text-white/70" />
+                  <span class="text-white/70 text-xs">{escort.location}</span>
+                </div>
+                <div class="flex items-center gap-1">
+                  <Calendar size={12} class="text-white/70" />
+                  <span class="text-white/70 text-xs">Disponible</span>
+                </div>
+              </div>
+              
+              <div class="flex items-center justify-end mt-2">
+                <a href={`/perfil/${escort.name.toLowerCase()}`} class="px-3 py-1 bg-accent/90 hover:bg-accent rounded-full text-white text-xs transition-colors">
+                  Ver perfil
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+    
+    <!-- Ver más escorts -->
+    <div class="text-center mt-10">
+      <a href="/escorts" class="inline-flex items-center gap-2 px-6 py-3 bg-accent/10 hover:bg-accent/20 text-accent rounded-full transition-all">
+        <span>Ver todas las escorts</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-1 transition-transform">
+          <path d="M5 12h14"></path>
+          <path d="m12 5 7 7-7 7"></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
 
 <style>
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
+  /* Animaciones para el título mejoradas */
+  @keyframes title-word-1 {
+    0% { opacity: 0; transform: translateY(-20px); }
+    20% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 1; transform: translateY(0); }
   }
-
-  @keyframes float-delayed {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
+  
+  @keyframes title-word-2 {
+    0% { opacity: 0; transform: translateY(-20px); }
+    20% { opacity: 0; transform: translateY(-20px); }
+    40% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 1; transform: translateY(0); }
   }
-
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
+  
+  @keyframes title-word-3 {
+    0% { opacity: 0; transform: translateY(-20px); }
+    40% { opacity: 0; transform: translateY(-20px); }
+    60% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 1; transform: translateY(0); }
   }
-
-  .animate-float-delayed {
-    animation: float 6s ease-in-out infinite;
-    animation-delay: 3s;
+  
+  @keyframes glow {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 0.8; }
+  }
+  
+  @keyframes pulse-slow {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+  }
+  
+  .animate-title-word-1 {
+    animation: title-word-1 1.5s ease forwards;
+  }
+  
+  .animate-title-word-2 {
+    animation: title-word-2 1.5s ease forwards;
+  }
+  
+  .animate-title-word-3 {
+    animation: title-word-3 1.5s ease forwards;
+  }
+  
+  .animate-glow {
+    animation: glow 3s ease-in-out infinite;
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse-slow 3s ease-in-out infinite;
+  }
+  
+  /* Animaciones para el título y texto */
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .animate-fade-in {
+    animation: fade-in 0.8s ease forwards;
+  }
+  
+  .animate-fade-in-delayed {
+    animation: fade-in 0.8s ease forwards;
+    animation-delay: 0.2s;
+    opacity: 0;
+  }
+  
+  .animate-fade-in-delayed-more {
+    animation: fade-in 0.8s ease forwards;
+    animation-delay: 0.4s;
+    opacity: 0;
+  }
+  
+  /* Estilos para las tarjetas de escorts */
+  .escort-card {
+    position: relative;
+    transition: all 0.3s ease;
+    border-radius: 0.75rem;
+    overflow: hidden;
+  }
+  
+  .escort-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Estilo para el texto con gradiente */
+  .text-gradient {
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 </style>

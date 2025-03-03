@@ -1,64 +1,140 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
-import SearchHero from '../components/SearchHero.astro';
+import SearchHero_elegante from '../components/SearchHero_elegante.astro';
 import Footer from '../components/Footer.astro';
+import { Star, Users, ShieldCheck, Clock, Sparkles, Heart } from 'lucide-astro';
 ---
 
 <Layout title="Inicio">
   <Navbar />
   
+  <!-- Gradiente de fondo para toda la página excepto el footer -->
+  <div class="fixed inset-0 -z-20 bg-gradient-to-br from-background via-background/95 to-background/90 pointer-events-none"></div>
+  
+  <!-- Efectos de fondo animados para toda la página -->
+  <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+    <!-- Círculos de luz con blur mejorados -->
+    <div class="absolute -top-40 -left-40 w-96 h-96 rounded-full bg-indigo-600/20 blur-[120px] animate-float"></div>
+    <div class="absolute top-60 -right-40 w-96 h-96 rounded-full bg-violet-500/20 blur-[120px] animate-float-delayed"></div>
+    <div class="absolute bottom-40 left-1/4 w-80 h-80 rounded-full bg-fuchsia-500/15 blur-[100px] animate-pulse"></div>
+    <div class="absolute top-1/3 right-1/4 w-60 h-60 rounded-full bg-blue-500/15 blur-[80px] animate-float-slow"></div>
+    
+    <!-- Destellos adicionales -->
+    <div class="absolute top-1/4 left-1/2 w-40 h-40 rounded-full bg-white/5 blur-[40px] animate-pulse-slow"></div>
+    <div class="absolute bottom-1/4 right-1/3 w-24 h-24 rounded-full bg-white/10 blur-[30px] animate-pulse-fast"></div>
+  </div>
+  
   <main class="relative pt-16 md:pt-20">
-    <!-- Efectos de fondo -->
-    <div class="absolute inset-0 overflow-hidden">
-      <div class="absolute -top-40 -left-40 w-60 md:w-80 h-60 md:h-80 bg-accent/20 rounded-full filter blur-3xl"></div>
-      <div class="absolute top-60 -right-40 w-60 md:w-80 h-60 md:h-80 bg-interactive/20 rounded-full filter blur-3xl"></div>
-    </div>
-
-    <!-- Contenido principal -->
     <div class="relative">
-      <SearchHero />
+      <SearchHero_elegante />
 
       <!-- Sección de categorías destacadas -->
-      <section class="mt-20 md:mt-32 px-4">
-        <h2 class="text-2xl md:text-3xl font-display text-surface-light text-center mb-8 md:mb-12">
-          Categorías <span class="text-accent">Destacadas</span>
-        </h2>
-        
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 max-w-6xl mx-auto">
-          {[
-            { title: 'Premium', icon: '👑', desc: 'Experiencias exclusivas' },
-            { title: 'Masajes', icon: '💆‍♀️', desc: 'Relax y bienestar' },
-            { title: 'Escorts VIP', icon: '⭐', desc: 'Servicio distinguido' },
-          ].map(cat => (
-            <div class="glass-panel p-4 md:p-6 text-center cursor-pointer transform hover:scale-105 transition-all">
-              <div class="text-3xl md:text-4xl mb-3 md:mb-4">{cat.icon}</div>
-              <h3 class="text-lg md:text-xl font-display text-surface-light mb-1 md:mb-2">{cat.title}</h3>
-              <p class="text-sm md:text-base text-surface-light/70">{cat.desc}</p>
+      <section class="mt-24 md:mt-36 px-4">
+        <div class="max-w-6xl mx-auto">
+          <div class="flex flex-col items-center mb-12">
+            <div class="inline-block px-4 py-1 bg-accent/10 rounded-full text-accent text-xs md:text-sm font-medium tracking-wider mb-4">
+              <span class="inline-flex items-center">
+                <Sparkles size={14} class="mr-2" />
+                CATEGORÍAS POPULARES
+              </span>
             </div>
-          ))}
+            <h2 class="text-3xl md:text-4xl font-display text-surface-light text-center mb-3">
+              Descubre <span class="text-gradient bg-gradient-to-r from-accent via-purple-500 to-pink-500">Experiencias</span> Únicas
+            </h2>
+            <p class="text-surface-light/70 text-center max-w-2xl">
+              Explora nuestras categorías más solicitadas y encuentra exactamente lo que estás buscando
+            </p>
+          </div>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            {[
+              { 
+                title: 'Premium', 
+                icon: '👑', 
+                desc: 'Experiencias exclusivas para los más exigentes', 
+                color: 'from-yellow-400/20 to-amber-600/20',
+                hover: 'hover:from-yellow-400/30 hover:to-amber-600/30'
+              },
+              { 
+                title: 'Masajes', 
+                icon: '💆‍♀️', 
+                desc: 'Relax y bienestar para cuerpo y mente', 
+                color: 'from-green-400/20 to-emerald-600/20',
+                hover: 'hover:from-green-400/30 hover:to-emerald-600/30'
+              },
+              { 
+                title: 'Escorts VIP', 
+                icon: '⭐', 
+                desc: 'Servicio distinguido con total discreción', 
+                color: 'from-purple-400/20 to-pink-600/20',
+                hover: 'hover:from-purple-400/30 hover:to-pink-600/30'
+              },
+            ].map(cat => (
+              <div class={`glass-panel p-6 md:p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-lg bg-gradient-to-br ${cat.color} ${cat.hover}`}>
+                <div class="text-4xl md:text-5xl mb-4 md:mb-5">{cat.icon}</div>
+                <h3 class="text-xl md:text-2xl font-display text-surface-light mb-2 md:mb-3">{cat.title}</h3>
+                <p class="text-sm md:text-base text-surface-light/70">{cat.desc}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       <!-- Sección de beneficios -->
-      <section class="mt-20 md:mt-32 px-4 mb-16 md:mb-20">
-        <h2 class="text-2xl md:text-3xl font-display text-surface-light text-center mb-8 md:mb-12">
-          ¿Por qué elegir <span class="text-accent">Nadie Lo Sabrá</span>?
-        </h2>
-        
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 max-w-6xl mx-auto">
-          {[
-            { title: 'Discreto', icon: '🔒', desc: 'Tu privacidad es nuestra prioridad' },
-            { title: 'Verificado', icon: '✅', desc: 'Perfiles 100% reales' },
-            { title: 'Seguro', icon: '🛡️', desc: 'Sistema de pago seguro' },
-            { title: 'Soporte 24/7', icon: '💬', desc: 'Estamos siempre para ti' },
-          ].map(benefit => (
-            <div class="glass-panel p-4 md:p-6 text-center">
-              <div class="text-3xl md:text-4xl mb-3 md:mb-4">{benefit.icon}</div>
-              <h3 class="text-lg md:text-xl font-display text-surface-light mb-1 md:mb-2">{benefit.title}</h3>
-              <p class="text-sm md:text-base text-surface-light/70">{benefit.desc}</p>
+      <section class="mt-24 md:mt-36 px-4 mb-20 md:mb-32">
+        <div class="max-w-6xl mx-auto">
+          <div class="flex flex-col items-center mb-12">
+            <div class="inline-block px-4 py-1 bg-accent/10 rounded-full text-accent text-xs md:text-sm font-medium tracking-wider mb-4">
+              <span class="inline-flex items-center">
+                <Heart size={14} class="mr-2" />
+                NUESTROS BENEFICIOS
+              </span>
             </div>
-          ))}
+            <h2 class="text-3xl md:text-4xl font-display text-surface-light text-center mb-3">
+              ¿Por qué elegir <span class="text-gradient bg-gradient-to-r from-accent via-purple-500 to-pink-500">Nadie Lo Sabrá</span>?
+            </h2>
+            <p class="text-surface-light/70 text-center max-w-2xl">
+              Ofrecemos una experiencia única con los más altos estándares de calidad y discreción
+            </p>
+          </div>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+            {[
+              { 
+                title: 'Discreto', 
+                icon: ShieldCheck, 
+                desc: 'Tu privacidad es nuestra prioridad absoluta', 
+                color: 'from-blue-400 to-indigo-600' 
+              },
+              { 
+                title: 'Verificado', 
+                icon: Star, 
+                desc: 'Perfiles 100% reales y verificados', 
+                color: 'from-yellow-400 to-amber-600' 
+              },
+              { 
+                title: 'Seguro', 
+                icon: Users, 
+                desc: 'Sistema de pago seguro y confidencial', 
+                color: 'from-green-400 to-emerald-600' 
+              },
+              { 
+                title: 'Soporte 24/7', 
+                icon: Clock, 
+                desc: 'Estamos siempre disponibles para ti', 
+                color: 'from-pink-400 to-rose-600' 
+              },
+            ].map(benefit => (
+              <div class="glass-panel p-6 md:p-8 text-center rounded-2xl border border-white/10 hover:border-white/20 transition-all hover:shadow-lg hover:-translate-y-1 cursor-pointer">
+                <div class={`inline-flex items-center justify-center w-16 h-16 rounded-xl bg-gradient-to-br ${benefit.color} mb-4 md:mb-5`}>
+                  <benefit.icon size={28} class="text-white" />
+                </div>
+                <h3 class="text-xl md:text-2xl font-display text-surface-light mb-2 md:mb-3">{benefit.title}</h3>
+                <p class="text-sm md:text-base text-surface-light/70">{benefit.desc}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </div>
@@ -66,3 +142,67 @@ import Footer from '../components/Footer.astro';
   
   <Footer />
 </Layout>
+
+<style>
+  /* Animaciones para los efectos de fondo */
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+
+  @keyframes float-delayed {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+  
+  @keyframes float-slow {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    25% { transform: translateY(-15px) translateX(15px); }
+    50% { transform: translateY(0) translateX(30px); }
+    75% { transform: translateY(15px) translateX(15px); }
+  }
+  
+  @keyframes pulse-slow {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+  }
+  
+  @keyframes pulse-fast {
+    0%, 100% { opacity: 0.2; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.1); }
+  }
+
+  .animate-float {
+    animation: float 15s ease-in-out infinite;
+  }
+
+  .animate-float-delayed {
+    animation: float-delayed 15s ease-in-out infinite;
+    animation-delay: 7s;
+  }
+  
+  .animate-float-slow {
+    animation: float-slow 20s ease-in-out infinite;
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse-slow 8s ease-in-out infinite;
+  }
+  
+  .animate-pulse-fast {
+    animation: pulse-fast 5s ease-in-out infinite;
+  }
+  
+  /* Estilos para las tarjetas */
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+  }
+  
+  /* Estilo para el texto con gradiente */
+  .text-gradient {
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+</style>

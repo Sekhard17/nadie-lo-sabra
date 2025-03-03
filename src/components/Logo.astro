@@ -16,25 +16,37 @@ const { class: className = '', size = 40 } = Astro.props;
     xmlns="http://www.w3.org/2000/svg"
     class="transition-all duration-300 hover:scale-105"
   >
-    <!-- Silueta femenina 1 -->
+    <!-- Círculo de fondo -->
+    <circle cx="50" cy="50" r="45" class="fill-black/30 transition-all duration-300" />
+    
+    <!-- Corazón base en morado -->
     <path
-      d="M20 20 C20 10, 30 0, 40 10 S60 0, 70 20 V80 C60 90, 50 100, 40 90 S20 90, 10 80 V20 Z"
-      class="fill-black transition-all duration-300 hover:fill-red-700"
+      d="M50 75C50 75 25 55 25 35C25 25 35 20 45 25C48 27 50 30 50 30C50 30 52 27 55 25C65 20 75 25 75 35C75 55 50 75 50 75Z"
+      class="fill-purple-600 transition-all duration-300 hover:fill-purple-500"
     />
-
-    <!-- Silueta femenina 2 -->
+    
+    <!-- Llamas del corazón (efecto de fuego) -->
     <path
-      d="M50 20 C50 10, 60 0, 70 10 S90 0, 100 20 V80 C90 90, 80 100, 70 90 S50 90, 40 80 V20 Z"
-      class="fill-black transition-all duration-300 hover:fill-red-700"
+      d="M50 70C50 70 30 55 30 35C30 30 35 25 40 28C43 30 45 33 45 33C45 33 47 30 50 28C55 25 60 30 60 35C60 55 50 70 50 70Z"
+      class="fill-pink-500/80 animate-flame-slow transition-all duration-300"
     />
-
-    <!-- Brillo en las siluetas -->
-    <circle cx="35" cy="25" r="5" class="fill-white/30"/>
-    <circle cx="65" cy="25" r="5" class="fill-white/30"/>
-
-    <!-- Destellos -->
-    <circle cx="35" cy="25" r="2" class="fill-yellow-400 animate-ping-slow"/>
-    <circle cx="65" cy="25" r="2" class="fill-yellow-400 animate-ping-slow" style="animation-delay: 1s"/>
+    
+    <path
+      d="M50 65C50 65 35 55 35 40C35 35 40 32 45 35C47 37 48 40 48 40C48 40 49 37 51 35C56 32 60 35 60 40C60 55 50 65 50 65Z"
+      class="fill-red-500/70 animate-flame-medium transition-all duration-300"
+    />
+    
+    <path
+      d="M50 60C50 60 40 55 40 45C40 42 43 40 46 42C47 43 48 45 48 45C48 45 49 43 50 42C53 40 55 42 55 45C55 55 50 60 50 60Z"
+      class="fill-orange-400/90 animate-flame-fast transition-all duration-300"
+    />
+    
+    <!-- Destellos y chispas -->
+    <circle cx="35" cy="30" r="2" class="fill-yellow-300 animate-spark-1"/>
+    <circle cx="65" cy="30" r="2" class="fill-yellow-300 animate-spark-2"/>
+    <circle cx="50" cy="25" r="1.5" class="fill-yellow-300 animate-spark-3"/>
+    <circle cx="45" cy="65" r="1" class="fill-yellow-300 animate-spark-4"/>
+    <circle cx="55" cy="60" r="1" class="fill-yellow-300 animate-spark-5"/>
   </svg>
 </div>
 
@@ -44,25 +56,95 @@ const { class: className = '', size = 40 } = Astro.props;
     align-items: center;
     justify-content: center;
   }
-
-  @keyframes ping-slow {
-    0% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(2); }
-    100% { opacity: 1; transform: scale(1); }
+  
+  /* Animaciones para las llamas */
+  @keyframes flame-slow {
+    0% { transform: scale(1, 1) translate(0, 0); }
+    25% { transform: scale(1.05, 0.95) translate(0, 2px); }
+    50% { transform: scale(0.95, 1.05) translate(0, -2px); }
+    75% { transform: scale(1.05, 0.95) translate(0, 2px); }
+    100% { transform: scale(1, 1) translate(0, 0); }
   }
-
-  .animate-ping-slow {
-    animation: ping-slow 3s infinite;
+  
+  @keyframes flame-medium {
+    0% { transform: scale(1, 1) translate(0, 0); }
+    33% { transform: scale(1.1, 0.9) translate(0, 3px); }
+    66% { transform: scale(0.9, 1.1) translate(0, -3px); }
+    100% { transform: scale(1, 1) translate(0, 0); }
   }
-
+  
+  @keyframes flame-fast {
+    0% { transform: scale(1, 1) translate(0, 0); }
+    50% { transform: scale(1.15, 0.85) translate(0, 4px); }
+    100% { transform: scale(1, 1) translate(0, 0); }
+  }
+  
+  /* Animaciones para las chispas */
+  @keyframes spark {
+    0% { opacity: 0.3; transform: scale(1) translate(0, 0); }
+    25% { opacity: 1; transform: scale(2) translate(var(--tx), var(--ty)); }
+    50% { opacity: 0.6; transform: scale(1.5) translate(calc(var(--tx) * 1.5), calc(var(--ty) * 1.5)); }
+    75% { opacity: 0.4; transform: scale(1) translate(calc(var(--tx) * 0.8), calc(var(--ty) * 0.8)); }
+    100% { opacity: 0.3; transform: scale(1) translate(0, 0); }
+  }
+  
+  .animate-flame-slow {
+    animation: flame-slow 3s infinite ease-in-out;
+    transform-origin: center bottom;
+  }
+  
+  .animate-flame-medium {
+    animation: flame-medium 2.5s infinite ease-in-out;
+    transform-origin: center bottom;
+  }
+  
+  .animate-flame-fast {
+    animation: flame-fast 2s infinite ease-in-out;
+    transform-origin: center bottom;
+  }
+  
+  .animate-spark-1 {
+    --tx: -5px;
+    --ty: -5px;
+    animation: spark 4s infinite;
+  }
+  
+  .animate-spark-2 {
+    --tx: 5px;
+    --ty: -5px;
+    animation: spark 4s infinite;
+    animation-delay: 0.5s;
+  }
+  
+  .animate-spark-3 {
+    --tx: 0px;
+    --ty: -8px;
+    animation: spark 4s infinite;
+    animation-delay: 1s;
+  }
+  
+  .animate-spark-4 {
+    --tx: -3px;
+    --ty: -3px;
+    animation: spark 4s infinite;
+    animation-delay: 1.5s;
+  }
+  
+  .animate-spark-5 {
+    --tx: 3px;
+    --ty: -3px;
+    animation: spark 4s infinite;
+    animation-delay: 2s;
+  }
+  
   .logo-container svg {
     filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.5));
   }
-
+  
   .logo-container:hover svg {
-    filter: drop-shadow(0 0 12px rgba(234, 179, 8, 1)); /* Usando un valor RGBA para el dorado */
+    filter: drop-shadow(0 0 15px rgba(147, 51, 234, 0.7)); /* Sombra morada */
   }
-
+  
   .logo-container:hover path {
     transform: scale(1.05);
   }
