@@ -3,7 +3,7 @@ import { Search, MapPin, Crown, Star, Clock, Heart, Sparkles } from 'lucide-astr
 ---
 
 <div class="search-container glass-panel p-1 animate-slide-up">
-  <div class="flex flex-col md:flex-row gap-2">
+  <div class="flex flex-col gap-2">
     <!-- Campo de búsqueda principal -->
     <div class="relative flex-grow">
       <input 
@@ -17,23 +17,25 @@ import { Search, MapPin, Crown, Star, Clock, Heart, Sparkles } from 'lucide-astr
     </div>
 
     <!-- Filtros -->
-    <div class="flex gap-2">
-      <select class="px-4 py-3 bg-black/20 rounded-xl text-surface-light focus:ring-2 focus:ring-accent/50 focus:outline-none">
-        <option value="">Categoría</option>
-        <option value="premium">Premium</option>
-        <option value="vip">VIP</option>
-        <option value="standard">Standard</option>
-      </select>
+    <div class="flex flex-col sm:flex-row gap-2">
+      <div class="flex flex-1 gap-2">
+        <select class="w-full sm:w-auto px-4 py-3 bg-black/20 rounded-xl text-surface-light focus:ring-2 focus:ring-accent/50 focus:outline-none">
+          <option value="">Categoría</option>
+          <option value="premium">Premium</option>
+          <option value="vip">VIP</option>
+          <option value="standard">Standard</option>
+        </select>
 
-      <select class="px-4 py-3 bg-black/20 rounded-xl text-surface-light focus:ring-2 focus:ring-accent/50 focus:outline-none">
-        <option value="">Ubicación</option>
-        <option value="santiago">Santiago Centro</option>
-        <option value="providencia">Providencia</option>
-        <option value="lascondes">Las Condes</option>
-        <option value="vitacura">Vitacura</option>
-      </select>
+        <select class="w-full sm:w-auto px-4 py-3 bg-black/20 rounded-xl text-surface-light focus:ring-2 focus:ring-accent/50 focus:outline-none">
+          <option value="">Ubicación</option>
+          <option value="santiago">Santiago Centro</option>
+          <option value="providencia">Providencia</option>
+          <option value="lascondes">Las Condes</option>
+          <option value="vitacura">Vitacura</option>
+        </select>
+      </div>
 
-      <button class="btn-accent px-8 py-3 flex items-center gap-2">
+      <button class="btn-accent w-full sm:w-auto px-8 py-3 flex items-center justify-center gap-2">
         <span>Buscar</span>
         <Search size={18} />
       </button>

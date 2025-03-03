@@ -11,18 +11,18 @@ const images = [
 ];
 ---
 
-<div class="relative w-full max-w-6xl mx-auto mt-32 text-center">
+<div class="relative w-full max-w-6xl mx-auto px-4 mt-20 md:mt-32 text-center">
   <!-- Efectos de fondo -->
   <div class="absolute inset-0 -z-10">
-    <div class="absolute top-0 left-1/4 w-64 h-64 bg-accent/30 rounded-full filter blur-3xl animate-float"></div>
-    <div class="absolute bottom-0 right-1/4 w-64 h-64 bg-interactive/30 rounded-full filter blur-3xl animate-float-delayed"></div>
+    <div class="absolute top-0 left-1/4 w-40 md:w-64 h-40 md:h-64 bg-accent/30 rounded-full filter blur-3xl animate-float"></div>
+    <div class="absolute bottom-0 right-1/4 w-40 md:w-64 h-40 md:h-64 bg-interactive/30 rounded-full filter blur-3xl animate-float-delayed"></div>
   </div>
 
   <!-- Contenido principal -->
-  <div class="space-y-8">
+  <div class="space-y-6 md:space-y-8">
     <!-- Título y subtítulo -->
-    <div class="space-y-4">
-      <h1 class="text-4xl md:text-6xl font-display text-surface-light mb-6 animate-fade-in">
+    <div class="space-y-3 md:space-y-4">
+      <h1 class="text-3xl sm:text-4xl md:text-6xl font-display text-surface-light mb-4 md:mb-6 animate-fade-in">
         Encuentra tu 
         <span class="relative inline-block">
           <span class="relative z-10 text-accent">momento especial</span>
@@ -32,7 +32,7 @@ const images = [
         </span>
       </h1>
       
-      <p class="text-lg md:text-xl text-surface-light/80 mb-12 animate-fade-in max-w-2xl mx-auto">
+      <p class="text-base sm:text-lg md:text-xl text-surface-light/80 mb-8 md:mb-12 animate-fade-in max-w-2xl mx-auto">
         Descubre experiencias únicas y exclusivas, cuidadosamente seleccionadas para ti
       </p>
     </div>
@@ -41,24 +41,24 @@ const images = [
     <SearchBox />
 
     <!-- Estadísticas -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mt-12 md:mt-16">
       {[
         { icon: Users, number: '2,500+', label: 'Usuarios Activos' },
         { icon: Heart, number: '98%', label: 'Satisfacción' },
         { icon: Clock, number: '24/7', label: 'Soporte' },
         { icon: Shield, number: '100%', label: 'Discreto' },
       ].map(({ icon: Icon, number, label }) => (
-        <div class="glass-panel p-4 text-center">
-          <Icon size={24} class="text-accent mx-auto mb-2" />
-          <div class="text-2xl font-display text-accent mb-1">{number}</div>
-          <div class="text-sm text-surface-light/70">{label}</div>
+        <div class="glass-panel p-3 md:p-4 text-center">
+          <Icon size={20} class="text-accent mx-auto mb-1 md:mb-2" />
+          <div class="text-xl md:text-2xl font-display text-accent mb-0 md:mb-1">{number}</div>
+          <div class="text-xs md:text-sm text-surface-light/70">{label}</div>
         </div>
       ))}
     </div>
 
     <!-- Galería de imágenes destacadas -->
-    <div class="relative mt-20">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-6xl mx-auto">
+    <div class="relative mt-12 md:mt-20">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 max-w-6xl mx-auto">
         {images.map((src, i) => (
           <div class="relative aspect-[2/3] glass-panel overflow-hidden group cursor-pointer">
             <div class="absolute inset-0 bg-gradient-to-t from-primary via-transparent to-transparent opacity-60 z-10"></div>
@@ -67,10 +67,10 @@ const images = [
               alt="Preview" 
               class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
             />
-            <div class="absolute bottom-0 left-0 right-0 p-4 text-left z-20">
-              <div class="text-sm font-semibold text-surface-light">Premium</div>
-              <div class="text-xs text-surface-light/70 flex items-center gap-1">
-                <MapPin size={12} />
+            <div class="absolute bottom-0 left-0 right-0 p-3 md:p-4 text-left z-20">
+              <div class="text-xs md:text-sm font-semibold text-surface-light">Premium</div>
+              <div class="text-[10px] md:text-xs text-surface-light/70 flex items-center gap-1">
+                <MapPin size={10} class="md:size-12" />
                 <span>Santiago Centro</span>
               </div>
             </div>
