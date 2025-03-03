@@ -1,0 +1,314 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import FaqModal from '../components/FaqModal.astro';
+import { AlertTriangle, ChevronRight, Clock, CheckCircle, Shield, Award, TrendingUp, RefreshCw, ChevronDown, HelpCircle, Sparkles, Users, DollarSign, Star, Heart } from 'lucide-astro';
+---
+
+<Layout title="Anúnciate Gratis - Nadie Lo Sabrá">
+  <Navbar />
+  
+  <main class="relative min-h-screen pt-[var(--navbar-height)]">
+    <!-- Efectos de fondo -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div class="absolute top-20 -left-40 w-80 h-80 bg-accent/20 rounded-full filter blur-3xl opacity-70 animate-pulse"></div>
+      <div class="absolute bottom-20 -right-40 w-80 h-80 bg-interactive/20 rounded-full filter blur-3xl opacity-70 animate-pulse"></div>
+    </div>
+
+    <div class="relative">
+      <!-- Sección de Bienvenida -->
+      <div class="max-w-4xl mx-auto px-4 py-12 md:py-20 text-center">
+        <div class="inline-flex items-center px-4 py-1.5 rounded-full bg-accent/10 text-accent text-xs sm:text-sm font-medium mb-6 backdrop-blur-sm">
+          <Clock size={16} class="mr-2" />
+          <span>Oferta por tiempo limitado</span>
+        </div>
+        
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display text-surface-light mb-6 leading-tight">
+          Anúnciate <span class="text-accent bg-gradient-to-r from-accent to-interactive bg-clip-text text-transparent">Gratis</span>
+        </h1>
+        
+        <p class="text-surface-light/80 text-base md:text-lg max-w-2xl mx-auto leading-relaxed mb-8">
+          Por tiempo limitado, estamos ofreciendo anuncios gratuitos para ayudarte a destacar y construir tu presencia en nuestra plataforma.
+        </p>
+        
+        <!-- Contador visual con funcionalidad real -->
+        <div class="inline-flex items-center gap-3 px-5 py-3 bg-surface-dark/50 backdrop-blur-md rounded-xl mb-10 shadow-lg shadow-black/20">
+          <span class="text-accent font-medium text-sm md:text-base">Oferta disponible por:</span>
+          <div class="flex gap-2">
+            <div id="days" class="bg-accent/10 px-3 py-1.5 rounded-lg text-surface-light font-mono text-sm md:text-base">00</div>
+            <div class="text-surface-light self-center">:</div>
+            <div id="hours" class="bg-accent/10 px-3 py-1.5 rounded-lg text-surface-light font-mono text-sm md:text-base">00</div>
+            <div class="text-surface-light self-center">:</div>
+            <div id="minutes" class="bg-accent/10 px-3 py-1.5 rounded-lg text-surface-light font-mono text-sm md:text-base">00</div>
+            <div class="text-surface-light self-center">:</div>
+            <div id="seconds" class="bg-accent/10 px-3 py-1.5 rounded-lg text-surface-light font-mono text-sm md:text-base">00</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Beneficios mejorados -->
+      <div class="max-w-6xl mx-auto px-4 mb-20">
+        <h2 class="text-2xl md:text-3xl font-display text-surface-light text-center mb-4">
+          Beneficios de <span class="text-accent">Anunciarte</span>
+        </h2>
+        
+        <p class="text-surface-light/70 text-center max-w-2xl mx-auto mb-12">
+          Únete a nuestra exclusiva comunidad y disfruta de estos increíbles beneficios para potenciar tu presencia
+        </p>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          {[
+            {
+              title: 'Visibilidad Destacada',
+              description: 'Aparece en los primeros resultados de búsqueda y recibe hasta 5x más visitas',
+              icon: Sparkles,
+              color: 'from-accent to-interactive'
+            },
+            {
+              title: 'Más Contactos',
+              description: 'Nuestros usuarios más destacados reciben un promedio de 30 contactos semanales',
+              icon: Users,
+              color: 'from-accent to-interactive'
+            },
+            {
+              title: 'Sin Costos Iniciales',
+              description: 'Comienza sin inversión y decide si quieres potenciar tu perfil más adelante',
+              icon: DollarSign,
+              color: 'from-accent to-interactive'
+            },
+            {
+              title: 'Perfil Verificado',
+              description: 'Obtén una insignia de verificación que genera más confianza en los usuarios',
+              icon: Shield,
+              color: 'from-accent to-interactive'
+            },
+            {
+              title: 'Estadísticas Detalladas',
+              description: 'Conoce quién visita tu perfil, cuándo y desde dónde para optimizar tu presencia',
+              icon: TrendingUp,
+              color: 'from-accent to-interactive'
+            },
+            {
+              title: 'Soporte Prioritario',
+              description: 'Atención personalizada para resolver cualquier duda o problema rápidamente',
+              icon: Star,
+              color: 'from-accent to-interactive'
+            }
+          ].map(benefit => (
+            <div class="glass-panel p-6 md:p-8 rounded-xl flex flex-col items-center text-center transition-all hover:scale-[1.02] duration-300 group hover:shadow-lg hover:shadow-black/20 relative overflow-hidden">
+              <!-- Efecto de gradiente en hover -->
+              <div class="absolute inset-0 bg-gradient-to-br {benefit.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+              
+              <!-- Icono con animación -->
+              <div class="relative w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+                <div class="absolute inset-0 rounded-full bg-gradient-to-br {benefit.color} opacity-20 group-hover:opacity-30 transition-opacity"></div>
+                <benefit.icon size={28} class="text-accent group-hover:text-accent transition-colors duration-300" />
+              </div>
+              
+              <h3 class="text-xl font-display text-surface-light mb-3 group-hover:text-accent transition-colors duration-300">{benefit.title}</h3>
+              <p class="text-surface-light/70 text-sm md:text-base">{benefit.description}</p>
+            </div>
+          ))}
+        </div>
+        
+        <!-- Botón de acción principal -->
+        <div class="flex justify-center mt-12">
+          <button id="show-terms-btn" class="group relative overflow-hidden bg-gradient-to-r from-accent to-interactive py-4 px-8 rounded-xl shadow-lg shadow-accent/20 hover:shadow-accent/30 transition-all duration-300 hover:scale-105">
+            <div class="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-10 transition-opacity"></div>
+            <span class="relative flex items-center text-white font-medium text-lg">
+              Me decidí, quiero anunciarme 
+              <span class="inline-block ml-2 transform group-hover:scale-125 transition-transform duration-300">😈</span>
+            </span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Términos y Condiciones (inicialmente oculto) -->
+      <div id="terms-section" class="max-w-4xl mx-auto px-4 mb-20 opacity-0 pointer-events-none transition-all duration-500 transform translate-y-10">
+        <div class="glass-panel p-6 md:p-8 lg:p-10 rounded-xl shadow-xl shadow-black/10">
+          <h2 class="text-2xl font-display text-surface-light mb-6 flex items-center">
+            <AlertTriangle size={24} class="text-accent mr-3" />
+            Términos y Condiciones
+            
+            <!-- Toggle para FAQ -->
+            <button 
+              id="faq-toggle" 
+              class="ml-auto w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center text-accent hover:bg-accent/20 transition-colors"
+              aria-label="Ver preguntas frecuentes"
+            >
+              <HelpCircle size={16} />
+            </button>
+          </h2>
+          
+          <div class="prose prose-invert prose-sm md:prose-base max-w-none mb-8">
+            <p>Al registrarte en nuestra plataforma, aceptas los siguientes términos y condiciones:</p>
+            
+            <ol class="space-y-2 text-surface-light/80 list-decimal pl-5">
+              <li>El servicio gratuito es una oferta promocional por tiempo limitado.</li>
+              <li>Nos reservamos el derecho de modificar o finalizar esta oferta en cualquier momento.</li>
+              <li>En el futuro, podríamos implementar planes de pago para funcionalidades premium.</li>
+              <li>Los usuarios registrados durante este período promocional podrían recibir beneficios especiales cuando se implementen los planes de pago.</li>
+              <li>Todo el contenido publicado debe cumplir con nuestras políticas de comunidad.</li>
+              <li>Nos reservamos el derecho de moderar o eliminar contenido inapropiado.</li>
+              <li>La información proporcionada debe ser veraz y actualizada.</li>
+              <li>Respetamos tu privacidad y tus datos personales según nuestra política de privacidad.</li>
+            </ol>
+            
+            <p class="text-accent/80 italic mt-4">
+              Al hacer clic en "Aceptar y Continuar", confirmas que has leído y aceptado estos términos y condiciones.
+            </p>
+          </div>
+          
+          <div class="flex flex-col sm:flex-row items-center gap-5">
+            <label class="flex items-center cursor-pointer group">
+              <input type="checkbox" id="accept-terms" class="form-checkbox bg-transparent border-accent/50 text-accent rounded focus:ring-accent focus:ring-offset-0 focus:ring-offset-transparent h-5 w-5">
+              <span class="ml-3 text-surface-light/80 text-sm md:text-base group-hover:text-surface-light transition-colors">Acepto los términos y condiciones</span>
+            </label>
+            
+            <a href="/crear-perfil" id="continue-button" class="btn-accent py-3 px-6 rounded-lg flex items-center justify-center gap-2 w-full sm:w-auto opacity-50 pointer-events-none transition-all duration-300 shadow-lg shadow-accent/20 hover:shadow-accent/30">
+              <span>Aceptar y Continuar</span>
+              <ChevronRight size={18} />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Importar el componente de Footer -->
+  <Footer />
+  
+  <!-- Importar el modal de FAQ -->
+  <FaqModal />
+</Layout>
+
+<script>
+  // Contador funcional
+  function updateCountdown() {
+    // Fecha objetivo (7 días a partir de ahora)
+    const now = new Date();
+    const targetDate = new Date();
+    targetDate.setDate(now.getDate() + 7);
+    
+    // Calcular la diferencia
+    const difference = targetDate.getTime() - now.getTime();
+    
+    // Calcular días, horas, minutos y segundos
+    const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+    
+    // Actualizar los elementos del DOM
+    const daysElement = document.getElementById('days');
+    const hoursElement = document.getElementById('hours');
+    const minutesElement = document.getElementById('minutes');
+    const secondsElement = document.getElementById('seconds');
+    
+    if (daysElement) daysElement.textContent = days.toString().padStart(2, '0');
+    if (hoursElement) hoursElement.textContent = hours.toString().padStart(2, '0');
+    if (minutesElement) minutesElement.textContent = minutes.toString().padStart(2, '0');
+    if (secondsElement) secondsElement.textContent = seconds.toString().padStart(2, '0');
+  }
+  
+  // Actualizar el contador cada segundo
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+  
+  // Mostrar sección de términos al hacer clic en el botón principal
+  const showTermsBtn = document.getElementById('show-terms-btn');
+  const termsSection = document.getElementById('terms-section');
+  
+  if (showTermsBtn && termsSection) {
+    showTermsBtn.addEventListener('click', function() {
+      // Ocultar el botón con animación
+      showTermsBtn.classList.add('opacity-0', 'scale-95');
+      
+      // Mostrar la sección de términos con animación
+      setTimeout(() => {
+        termsSection.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-10');
+        
+        // Scroll suave hasta la sección de términos
+        termsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 300);
+    });
+  }
+  
+  // Manejar el checkbox y el botón de continuar
+  const checkbox = document.getElementById('accept-terms') as HTMLInputElement;
+  const continueButton = document.getElementById('continue-button');
+  
+  if (checkbox && continueButton) {
+    checkbox.addEventListener('change', function() {
+      if (this.checked) {
+        continueButton.classList.remove('opacity-50', 'pointer-events-none');
+        continueButton.classList.add('hover:scale-105');
+      } else {
+        continueButton.classList.add('opacity-50', 'pointer-events-none');
+        continueButton.classList.remove('hover:scale-105');
+      }
+    });
+  }
+  
+  // Abrir modal de FAQ
+  const faqToggle = document.getElementById('faq-toggle');
+  
+  if (faqToggle) {
+    faqToggle.addEventListener('click', function() {
+      // La función openFaqModal está definida en el componente FaqModal
+      (window as any).openFaqModal();
+    });
+  }
+</script>
+
+<style>
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Estilos para el checkbox personalizado */
+  .form-checkbox {
+    @apply rounded border-white/20 bg-black/20;
+  }
+  
+  /* Botón con efecto de brillo */
+  .btn-accent {
+    @apply bg-accent text-white font-medium relative overflow-hidden;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-accent:hover:not(.pointer-events-none) {
+    @apply bg-accent/90;
+  }
+  
+  .btn-accent:before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      to bottom right,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.1) 100%
+    );
+    transform: rotate(45deg);
+    transition: all 0.3s ease;
+    opacity: 0;
+  }
+  
+  .btn-accent:hover:before:not(.pointer-events-none) {
+    opacity: 1;
+  }
+  
+  /* Declaración para TypeScript */
+  declare global {
+    interface Window {
+      openFaqModal: () => void;
+    }
+  }
+</style>

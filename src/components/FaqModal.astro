@@ -1,0 +1,148 @@
+---
+import { X, ChevronDown } from 'lucide-astro';
+
+const faqs = [
+  {
+    question: '¿Realmente es gratis o hay costos ocultos?',
+    answer: 'El servicio es completamente gratuito durante esta etapa promocional. No hay costos ocultos ni necesidad de proporcionar información de pago.'
+  },
+  {
+    question: '¿Por cuánto tiempo será gratuito?',
+    answer: 'La duración de la oferta promocional es limitada. Te recomendamos aprovecharla ahora para asegurar tu lugar.'
+  },
+  {
+    question: '¿Qué sucederá cuando termine el período gratuito?',
+    answer: 'Cuando termine el período promocional, te notificaremos con anticipación sobre las opciones disponibles. Los usuarios que se registren durante esta etapa podrían recibir beneficios especiales.'
+  },
+  {
+    question: '¿Puedo cancelar mi perfil en cualquier momento?',
+    answer: 'Sí, puedes desactivar o eliminar tu perfil cuando lo desees desde tu panel de control.'
+  },
+  {
+    question: '¿Cómo se protege mi privacidad?',
+    answer: 'Tu privacidad es nuestra prioridad. Implementamos medidas de seguridad avanzadas y nunca compartimos tus datos personales con terceros sin tu consentimiento.'
+  },
+  {
+    question: '¿Qué tipo de fotos puedo subir?',
+    answer: 'Puedes subir fotos que muestren tu rostro y cuerpo, siempre respetando nuestras políticas de contenido. Las fotos deben ser tuyas y no deben contener contenido explícito.'
+  },
+  {
+    question: '¿Cuánto tiempo tarda en aprobarse mi perfil?',
+    answer: 'Normalmente revisamos y aprobamos los perfiles en un plazo de 24-48 horas. Te notificaremos por email cuando tu perfil esté activo.'
+  }
+];
+---
+
+<div id="faq-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+  <!-- Overlay de fondo -->
+  <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" id="modal-overlay"></div>
+  
+  <!-- Contenido del modal -->
+  <div class="relative bg-surface-dark border border-white/10 rounded-2xl w-full max-w-3xl max-h-[80vh] overflow-hidden shadow-2xl shadow-accent/20 transform scale-95 transition-all duration-300" id="modal-content">
+    <!-- Encabezado del modal -->
+    <div class="flex items-center justify-between p-6 border-b border-white/10">
+      <h2 class="text-2xl font-display text-surface-light flex items-center">
+        <span class="text-accent mr-2">?</span> Preguntas Frecuentes
+      </h2>
+      <button id="close-modal" class="text-surface-light/70 hover:text-accent transition-colors p-1 rounded-full hover:bg-white/5">
+        <X size={24} />
+      </button>
+    </div>
+    
+    <!-- Cuerpo del modal con scroll -->
+    <div class="overflow-y-auto p-6 max-h-[calc(80vh-140px)]">
+      <div class="space-y-4">
+        {faqs.map((faq, index) => (
+          <div class="bg-black/20 rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-black/20 border border-white/5">
+            <details class="group">
+              <summary class="flex justify-between items-center p-5 cursor-pointer">
+                <h3 class="text-lg font-medium text-surface-light">{faq.question}</h3>
+                <span class="text-accent transition-transform duration-300 group-open:rotate-180">
+                  <ChevronDown size={20} />
+                </span>
+              </summary>
+              <div class="px-5 pb-5 text-surface-light/80">
+                <p>{faq.answer}</p>
+              </div>
+            </details>
+          </div>
+        ))}
+      </div>
+    </div>
+    
+    <!-- Pie del modal -->
+    <div class="p-6 border-t border-white/10 bg-black/30">
+      <button id="close-modal-btn" class="w-full py-3 bg-accent hover:bg-accent/90 text-white rounded-xl transition-colors flex items-center justify-center">
+        Entendido
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Funcionalidad para abrir y cerrar el modal
+  const modal = document.getElementById('faq-modal');
+  const modalContent = document.getElementById('modal-content');
+  const modalOverlay = document.getElementById('modal-overlay');
+  const closeModalBtn = document.getElementById('close-modal-btn');
+  const closeModalX = document.getElementById('close-modal');
+  
+  // Función para abrir el modal
+  window.openFaqModal = function() {
+    if (modal) {
+      document.body.style.overflow = 'hidden'; // Prevenir scroll en el body
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+      
+      // Animar la entrada del contenido
+      setTimeout(() => {
+        if (modalContent) {
+          modalContent.classList.remove('scale-95');
+          modalContent.classList.add('scale-100');
+        }
+      }, 10);
+    }
+  };
+  
+  // Función para cerrar el modal
+  function closeModal() {
+    if (modal && modalContent) {
+      document.body.style.overflow = ''; // Restaurar scroll
+      modalContent.classList.remove('scale-100');
+      modalContent.classList.add('scale-95');
+      
+      setTimeout(() => {
+        modal.classList.add('opacity-0', 'pointer-events-none');
+      }, 200);
+    }
+  }
+  
+  // Event listeners para cerrar el modal
+  if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+  if (closeModalX) closeModalX.addEventListener('click', closeModal);
+  if (modalOverlay) modalOverlay.addEventListener('click', closeModal);
+  
+  // Prevenir que el clic dentro del contenido cierre el modal
+  if (modalContent) {
+    modalContent.addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
+  }
+</script>
+
+<style>
+  /* Estilos para los detalles/FAQ */
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+  
+  /* Animación para el modal */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes scaleIn {
+    from { transform: scale(0.95); }
+    to { transform: scale(1); }
+  }
+</style>
